@@ -19,4 +19,4 @@ Day 1: learn HTML5 Canvas and setup the game logic. Learn to render objects and 
 
 Day 2: continue learning Canvas and be able to render the chicken and making sure the game logic is correctly implemented such as cars running over the chicken will cause end game.
 
-Day 3: make sure the game is running as intended and implement controls. add styling
+Day 3: make sure the game is running as intended and implement controls. add styling.
