@@ -4,13 +4,44 @@
     <meta charset="utf-8">
     <title>ChickenCrossing</title>
   </head>
-  <style type="text/css">
-      canvas { border: 1px solid black; }
-    </style>
-  <script src="bundle.js">
+  <link rel = "stylesheet" href = "style.css" />
 
-  </script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
+  <script src="bundle.js"></script>
   <body>
-    <canvas id="canvas" width="500" height="500"></canvas>
+    <div class='page-container'>
+
+      <div class='page'>
+
+        <div class="instructions">
+            <img src="assets/arrows.png" alt="arrows" width=150 height=150>
+            <img src="assets/start.png" alt="arrows" width=150 height=150>
+        </div>
+
+        <div class='canvas-container'>
+          <div class="game-title">
+            <h1> Chicken Crossing </h1>
+          </div>
+          <div class='canvas'>
+            <canvas id="canvas" width="500" height="500"></canvas>
+          </div>
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/sywuaa" class="github-link">
+              <i class="devicon-github-plain-wordmark"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/shaoyong-wu-38a8a4103" class="linkedin-link">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

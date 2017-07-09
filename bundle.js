@@ -115,6 +115,10 @@ class Game {
         pos = [0, 76];
         break;
 
+      case 78:
+        this.start();
+        break;
+
       default:
         pos = [0, 0];
     }
@@ -134,6 +138,8 @@ class Game {
 
   checkPass(ctx){
     if( this.chicken.y < 30) {
+      this.cars=[];
+      this.addCar();
       this.chicken.draw(ctx);
       this.level += 1;
       this.relocateChicken();
@@ -170,9 +176,6 @@ class Game {
     requestAnimationFrame(this.start.bind(this));
   }
 
-  pause() {
-    this.draw(this.ctx);
-  }
 
 }
 
@@ -210,7 +213,7 @@ class Car {
   }
 
   draw(ctx,level) {
-    ctx.drawImage(this.sprite, this.x, this.y);
+    ctx.drawImage(this.sprite, this.x, this.y, 80, 50);
     if(this.x > 500){
       this.x = -80;
     }else if (this.x < -80) {
@@ -250,8 +253,12 @@ class Chicken {
   }
 
   move(pos){
-    this.x += pos[0];
-    this.y += pos[1];
+    if(this.x + pos[0] > 0 && this.x + pos[0] < 500){
+      this.x += pos[0];
+    }
+    if(this.y + pos[1] > 0 && this.y + pos[1] < 500){
+      this.y += pos[1];
+    }
   }
 
   isCollideWith(cars) {

@@ -43,6 +43,10 @@ class Game {
         pos = [0, 76];
         break;
 
+      case 78:
+        this.start();
+        break;
+
       default:
         pos = [0, 0];
     }
@@ -62,6 +66,8 @@ class Game {
 
   checkPass(ctx){
     if( this.chicken.y < 30) {
+      this.cars=[];
+      this.addCar();
       this.chicken.draw(ctx);
       this.level += 1;
       this.relocateChicken();
@@ -98,9 +104,6 @@ class Game {
     requestAnimationFrame(this.start.bind(this));
   }
 
-  pause() {
-    this.draw(this.ctx);
-  }
 
 }
 

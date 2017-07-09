@@ -1,0 +1,77 @@
+body {
+  background: url(assets/page-background.jpg) no-repeat center center fixed;\
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  height: 90vh;
+}
+
+.page {
+  display: flex;
+  width: 800px;
+}
+
+.instructions {
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+}
+
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-title {
+  display: flex;
+  justify-content: center;
+  font-family: 'Permanent Marker', cursive;
+}
+
+.canvas{
+  border: 2px solid grey;
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin: 0 auto;
+  z-index: 999;
+}
+
+
+.links {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.links a {
+  margin: 20px;
+}
+
+.links i {
+  font-size: 4rem;
+}
+
+.github-link {
+  color: White;
+}
+
+.github-link:hover{
+  color: black;
+}
+
+.linkedin-link {
+  color: blue;
+}
+
+.linkedin-link:hover {
+  color: red;
+}

@@ -18,8 +18,12 @@ class Chicken {
   }
 
   move(pos){
-    this.x += pos[0];
-    this.y += pos[1];
+    if(this.x + pos[0] > 0 && this.x + pos[0] < 500){
+      this.x += pos[0];
+    }
+    if(this.y + pos[1] > 0 && this.y + pos[1] < 500){
+      this.y += pos[1];
+    }
   }
 
   isCollideWith(cars) {
