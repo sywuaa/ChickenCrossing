@@ -88,6 +88,7 @@ class Game {
   draw(ctx) {
     ctx.clearRect(0, 0, 500, 500);
     Util.background(ctx);
+    this.drawlevel(ctx);
     this.checkPass(ctx);
     this.move();
     this.cars.forEach( car => {
@@ -113,6 +114,11 @@ class Game {
       this.relocateChicken();
     }
     requestAnimationFrame(this.start.bind(this));
+  }
+
+  drawlevel(ctx){
+    ctx.font="20px Georgia";
+    ctx.fillText(this.level, 69,478);
   }
 
 
