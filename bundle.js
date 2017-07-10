@@ -76,28 +76,37 @@ const Util = __webpack_require__(4);
 
 class Game {
   constructor(ctx) {
-    this.cars = [];
     this.ctx = ctx;
-    this.chicken = new Chicken();
-    this.timer = 0;
-    this.lives = 3;
-    this.level = 1;
-    this.addCar();
+    this.newGame();
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
 
-    document.addEventListener("keydown", this.handleKeyPress);
 
     this.checkPass = this.checkPass.bind(this);
   }
 
+
+  loadingScreen() {
+    debugger
+    document.addEventListener('keydown', this.handleKeyPress);
+    Util.screen(this.ctx);
+  }
+
+
+  newGame(){
+    this.cars = [];
+    this.addCar();
+    this.chicken = new Chicken();
+    this.lives = 3;
+    this.level = 1;
+  }
+
   handleKeyPress(e){
-    let pos;
+    let pos=[0,0];
     switch ( e.keyCode ){
       //LEFT
       case 37:
-        this.chicken.jump(this.ctx);
-        // pos = [-25, 0];
+        pos = [-25, 0];
         break;
 
       //UP
@@ -116,12 +125,15 @@ class Game {
         break;
 
       case 78:
+        this.newGame();
         this.start();
         break;
 
       default:
         pos = [0, 0];
     }
+
+    this.chicken.move(pos);
   }
 
   addCar() {
@@ -244,11 +256,11 @@ class Chicken {
 
   draw(ctx) {
     ctx.drawImage(this.sprite, this.x, this.y);
-    ctx.drawImage(this.sprite, this.x-5, this.y-5);
-    ctx.drawImage(this.sprite, this.x-10, this.y-10);
-    ctx.drawImage(this.sprite, this.x-15, this.y-15);
-    ctx.drawImage(this.sprite, this.x-20, this.y-10);
-    ctx.drawImage(this.sprite, this.x-25, this.y);
+    // ctx.drawImage(this.sprite, this.x-5, this.y-5);
+    // ctx.drawImage(this.sprite, this.x-10, this.y-10);
+    // ctx.drawImage(this.sprite, this.x-15, this.y-15);
+    // ctx.drawImage(this.sprite, this.x-20, this.y-10);
+    // ctx.drawImage(this.sprite, this.x-25, this.y);
 
   }
 
@@ -307,12 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let canvas = document.getElementById('canvas');
   let ctx = canvas.getContext('2d');
 
-  //
-  // document.addEventListener('keydown', e => {
-  //   if( e.keyCode === 78) {
-      new Game(ctx).start();
-  //   }
-  // });
+    new Game(ctx).loadingScreen();
 });
 
 
@@ -325,8 +332,19 @@ const Util = {
     let sprite = new Image();
     sprite.src = 'assets/background.png';
     ctx.drawImage(sprite,0,0);
-  }
+  },
+  screen(ctx) {
+    let sprite2 = new Image();
+    sprite2.src = 'assets/screen.png';
+
+    sprite2.onload = () =>{
+      ctx.drawImage(sprite2, 0, 0, 500, 500);
+    };
+  },
+
 };
+
+
 
 module.exports = Util;
 

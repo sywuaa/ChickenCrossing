@@ -49,7 +49,7 @@ body {
   margin: 20px;
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
+  padding-top: 60px;
 }
 
 .links a {
@@ -61,17 +61,17 @@ body {
 }
 
 .github-link {
-  color: White;
+  color: Black;
 }
 
 .github-link:hover{
-  color: black;
+  color: White;
 }
 
 .linkedin-link {
-  color: blue;
+  color: Blue;
 }
 
 .linkedin-link:hover {
-  color: red;
+  color: White;
 }

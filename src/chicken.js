@@ -9,11 +9,11 @@ class Chicken {
 
   draw(ctx) {
     ctx.drawImage(this.sprite, this.x, this.y);
-    ctx.drawImage(this.sprite, this.x-5, this.y-5);
-    ctx.drawImage(this.sprite, this.x-10, this.y-10);
-    ctx.drawImage(this.sprite, this.x-15, this.y-15);
-    ctx.drawImage(this.sprite, this.x-20, this.y-10);
-    ctx.drawImage(this.sprite, this.x-25, this.y);
+    // ctx.drawImage(this.sprite, this.x-5, this.y-5);
+    // ctx.drawImage(this.sprite, this.x-10, this.y-10);
+    // ctx.drawImage(this.sprite, this.x-15, this.y-15);
+    // ctx.drawImage(this.sprite, this.x-20, this.y-10);
+    // ctx.drawImage(this.sprite, this.x-25, this.y);
 
   }
 
