@@ -15,7 +15,6 @@ class Game {
 
 
   loadingScreen() {
-    debugger
     document.addEventListener('keydown', this.handleKeyPress);
     Util.screen(this.ctx);
   }
