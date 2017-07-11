@@ -25,7 +25,7 @@ Game difficulty and car speed increases as the player help the chicken successfu
 - The current game level is displayed at the bottom left corner of the screen.
 - As well as the lives of the chicken is also displayed on the top right corner
 
-![landing_page](docs/level.png)
+![landing_page](docs/levelAndLives.png)
 
 
 #### Architecture and Technologies
