@@ -160,7 +160,8 @@ class Game {
   draw(ctx) {
     ctx.clearRect(0, 0, 500, 500);
     Util.background(ctx);
-    this.drawlevel(ctx);
+    this.drawLevel(ctx);
+    this.drawLives(ctx);
     this.checkPass(ctx);
     this.cars.forEach( car => {
       car.draw(ctx);
@@ -205,9 +206,18 @@ class Game {
     return (this.lives > 0) ? false : true;
   }
 
-  drawlevel(ctx){
+  drawLevel(ctx){
     ctx.font="20px Georgia";
-    ctx.fillText(this.level, 69,478);
+    if(this.level < 10){
+      ctx.fillText(this.level, 71,30);
+    }else {
+      ctx.fillText(this.level, 66,30);
+    }
+  }
+
+  drawLives(ctx){
+    ctx.font="20px Georgia";
+    ctx.fillText(this.lives, 466,29);
   }
 
 }
