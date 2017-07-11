@@ -22,7 +22,7 @@ Using arrow keys:
 #### Difficulty
 
 Game difficulty and car speed increases as the player help the chicken successfully across the road.
-- The current game level is displayed at the bottom left corner of the screen.
+- The current game level is displayed at the top left corner of the screen.
 - As well as the lives of the chicken is also displayed on the top right corner
 
 ![landing_page](docs/levelAndLives.png)
