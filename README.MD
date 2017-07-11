@@ -2,7 +2,7 @@
 
 [live](http://sywu.us/ChickenCrossing/)
 
-![landing_page](docs/page.png)
+![landing_page](docs/mainpage.png)
 
 #### About
 Chicken Crossing is a classic game of Frogger. Using the arrow keys, player can help the chicken across the road.
