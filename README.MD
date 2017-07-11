@@ -36,5 +36,4 @@ Game difficulty and car speed increases as the player help the chicken successfu
 
 #### Future direction for the project
 - Implement chicken hop animation
-- Implement score
 - Implement chick-carry to increase score
