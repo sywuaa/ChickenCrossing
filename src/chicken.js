@@ -2,6 +2,7 @@ class Chicken {
   constructor(options) {
     this.x = 250;
     this.y = 460;
+    this.dead = 'false';
 
     this.sprite = new Image();
     this.sprite.src = 'assets/chicken.png';

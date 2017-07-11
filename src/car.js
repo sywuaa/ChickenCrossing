@@ -2,7 +2,8 @@ class Car {
   constructor(options){
     this.x = options.x;
     this.y = options.y;
-    this.speed = options.level * options.speed;
+    this.level = options.level;
+    this.speed = options.speed;
     this.sprite = new Image();
     this.sprite.src = options.img;
   }
@@ -17,7 +18,7 @@ class Car {
   }
 
   move(){
-    this.x += this.speed;
+    this.x += (this.speed * this.level/2);
   }
 }
 

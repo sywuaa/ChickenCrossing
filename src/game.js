@@ -5,11 +5,7 @@ const Util = require("./util");
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
-    this.newGame();
-
     this.handleKeyPress = this.handleKeyPress.bind(this);
-
-
     this.checkPass = this.checkPass.bind(this);
   }
 
@@ -19,13 +15,12 @@ class Game {
     Util.screen(this.ctx);
   }
 
-
   newGame(){
+    this.level = 1;
     this.cars = [];
     this.addCar();
     this.chicken = new Chicken();
-    this.lives = 3;
-    this.level = 1;
+    this.lives = 5;
   }
 
   handleKeyPress(e){
@@ -52,9 +47,14 @@ class Game {
         break;
 
       case 78:
-        this.newGame();
-        this.start();
+        if(this.chicken === undefined || this.gameOver()){
+          this.newGame();
+          this.start();
+        }else{
+          this.newGame();
+        }
         break;
+
 
       default:
         pos = [0, 0];
@@ -77,10 +77,10 @@ class Game {
 
   checkPass(ctx){
     if( this.chicken.y < 30) {
+      this.level += 1;
       this.cars=[];
       this.addCar();
       this.chicken.draw(ctx);
-      this.level += 1;
       this.relocateChicken();
     }
   }
@@ -90,10 +90,10 @@ class Game {
     Util.background(ctx);
     this.drawlevel(ctx);
     this.checkPass(ctx);
-    this.move();
     this.cars.forEach( car => {
-      car.draw(ctx, this.level/5);
+      car.draw(ctx);
     });
+    this.move();
     this.chicken.draw(ctx);
   }
 
@@ -107,20 +107,36 @@ class Game {
     this.chicken = new Chicken();
   }
 
+  stopAnimation(id){
+    cancelAnimationFrame(id);
+  }
+
   start() {
     this.draw(this.ctx);
     if(this.chicken.isCollideWith(this.cars)){
-      this.live -= 1;
+      this.lives -= 1;
       this.relocateChicken();
     }
-    requestAnimationFrame(this.start.bind(this));
+    if(this.gameOver()){
+      this.stopAnimation(this.animationID);
+      this.endGame(this.ctx);
+    }else {
+      this.animationID = requestAnimationFrame(this.start.bind(this));
+    }
+  }
+
+  endGame(ctx) {
+    Util.endGame(ctx);
+  }
+
+  gameOver(){
+    return (this.lives > 0) ? false : true;
   }
 
   drawlevel(ctx){
     ctx.font="20px Georgia";
     ctx.fillText(this.level, 69,478);
   }
-
 
 }
 

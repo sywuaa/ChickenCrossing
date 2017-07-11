@@ -12,6 +12,11 @@ const Util = {
       ctx.drawImage(sprite2, 0, 0, 500, 500);
     };
   },
+  endGame(ctx) {
+    let sprite3 = new Image();
+    sprite3.src = 'assets/endgame.png';
+    ctx.drawImage(sprite3,0,0,500,500);
+  },
 
 };
 
