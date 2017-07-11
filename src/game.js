@@ -126,7 +126,7 @@ class Game {
   }
 
   endGame(ctx) {
-    Util.endGame(ctx);
+    Util.endGame(ctx, this.level);
   }
 
   gameOver(){

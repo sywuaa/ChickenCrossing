@@ -198,7 +198,7 @@ class Game {
   }
 
   endGame(ctx) {
-    Util.endGame(ctx);
+    Util.endGame(ctx, this.level);
   }
 
   gameOver(){
@@ -358,16 +358,22 @@ const Util = {
   },
   screen(ctx) {
     let sprite2 = new Image();
-    sprite2.src = 'assets/screen.png';
+    sprite2.src = 'assets/startscreen.png';
 
     sprite2.onload = () =>{
       ctx.drawImage(sprite2, 0, 0, 500, 500);
     };
   },
-  endGame(ctx) {
+  endGame(ctx, level) {
     let sprite3 = new Image();
     sprite3.src = 'assets/endgame.png';
-    ctx.drawImage(sprite3,0,0,500,500);
+
+    sprite3.onload = () =>{
+      ctx.drawImage(sprite3, 0, 0, 500, 500);
+      ctx.font="25px Georgia";
+      ctx.fillText(level-1, 253,82);
+    };
+
   },
 
 };
