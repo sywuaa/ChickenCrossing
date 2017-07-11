@@ -14,7 +14,7 @@ const Util = {
   },
   endGame(ctx, level) {
     let sprite3 = new Image();
-    sprite3.src = 'assets/endgame.png';
+    sprite3.src = 'assets/endgame2.png';
 
     sprite3.onload = () =>{
       ctx.drawImage(sprite3, 0, 0, 500, 500);
