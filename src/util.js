@@ -7,7 +7,7 @@ const Util = {
 
   screen(ctx) {
     let sprite2 = new Image();
-    sprite2.src = 'assets/startscreen.png';
+    sprite2.src = 'assets/startscreen2.png';
     sprite2.onload = () => ctx.drawImage(sprite2,0,0,500,500);
   },
 
