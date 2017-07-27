@@ -96,28 +96,8 @@ class Game {
   }
 
   handleKeyPress(e){
-    let pos=[0,0];
-    switch ( e.keyCode ){
-      //LEFT
-      case 37:
-        pos = [-25, 0];
-        break;
 
-      //UP
-      case 38:
-        pos = [0, -76];
-        break;
-
-      //RIGHT
-      case 39:
-        pos = [25, 0];
-        break;
-
-      //DOWN
-      case 40:
-        pos = [0, 76];
-        break;
-
+    switch(e.keyCode){
       case 78:
         if(this.chicken === undefined || this.gameOver()){
           this.newGame();
@@ -126,13 +106,34 @@ class Game {
           this.newGame();
         }
         break;
-
-
-      default:
-        pos = [0, 0];
     }
 
-    this.chicken.move(pos);
+    if(this.chicken.status === ''){
+      switch ( e.keyCode ){
+        //LEFT
+        case 37:
+          this.chicken.jump('left');
+          break;
+
+        //UP
+        case 38:
+          this.chicken.jump('up');
+          break;
+
+        //RIGHT
+        case 39:
+          this.chicken.jump('right');
+          break;
+
+        //DOWN
+        case 40:
+          this.chicken.jump('down');
+          break;
+
+        default:
+          this.chicken.status = '';
+      }
+    }
   }
 
   addCar() {
@@ -148,12 +149,14 @@ class Game {
   }
 
   checkPass(ctx){
-    if( this.chicken.y < 30) {
+    if( this.chicken.y < 10) {
+      this.relocateChicken();
+      this.chicken.status = 'passed';
       this.level += 1;
       this.cars=[];
       this.addCar();
       this.chicken.draw(ctx);
-      this.relocateChicken();
+
     }
   }
 
@@ -166,14 +169,7 @@ class Game {
     this.cars.forEach( car => {
       car.draw(ctx);
     });
-    this.move();
     this.chicken.draw(ctx);
-  }
-
-  move(){
-    this.cars.forEach( car => {
-      car.move();
-    });
   }
 
   relocateChicken(){
@@ -257,6 +253,7 @@ class Car {
   }
 
   draw(ctx,level) {
+    this.move();
     ctx.drawImage(this.sprite, this.x, this.y, 80, 50);
     if(this.x > 500){
       this.x = -80;
@@ -275,41 +272,119 @@ module.exports = Car;
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
+
+const Util = __webpack_require__(4);
 
 class Chicken {
   constructor(options) {
-    this.x = 250;
-    this.y = 460;
+    this.x = 230;
+    this.y = 465;
+
+    this.shadowX = 245;
+    this.shadowY = 500;
+
     this.dead = 'false';
 
-    this.sprite = new Image();
-    this.sprite.src = 'assets/chicken.png';
+    this.left = new Image();
+    this.left.src = 'assets/chickenLeft.png';
+    this.right = new Image();
+    this.right.src = 'assets/chickenRight.png';
+    this.sprite = this.left;
+
+    this.status = '';
+    this.inAirCounter = 0;
+    this.direction = '';
+    this.joyJumpCounter = 0;
   }
 
   draw(ctx) {
+    if(this.status === 'passed'){
+      this.joyJumping();
+    }else {
+      this.move();
+    }
     ctx.drawImage(this.sprite, this.x, this.y);
-    // ctx.drawImage(this.sprite, this.x-5, this.y-5);
-    // ctx.drawImage(this.sprite, this.x-10, this.y-10);
-    // ctx.drawImage(this.sprite, this.x-15, this.y-15);
-    // ctx.drawImage(this.sprite, this.x-20, this.y-10);
-    // ctx.drawImage(this.sprite, this.x-25, this.y);
-
+    Util.chickenShadow(ctx, this.shadowX, this.shadowY);
   }
 
-  move(pos){
-    if(this.x + pos[0] > 0 && this.x + pos[0] < 500){
-      this.x += pos[0];
+  joyJumping(){
+    if(this.joyJumpCounter % 16 < 8){
+      this.y -= 2;
+    }else {
+      this.y += 2;
     }
-    if(this.y + pos[1] > 0 && this.y + pos[1] < 500){
-      this.y += pos[1];
+    this.joyJumpCounter += 1;
+
+    if(this.joyJumpCounter === 63){
+      this.joyJumpCounter = 0;
+      this.status = '';
     }
+  }
+
+  move(){
+
+    if(this.status === 'inAir'){
+      if(this.inAirCounter < 8){
+        if(this.direction === 'left' || this.direction === 'right'){
+          if(this.direction === 'left'){
+            this.sprite = this.left;
+            this.x -= 2;
+            this.shadowX -= 2;
+          }else {
+            this.sprite = this.right;
+            this.x += 2;
+            this.shadowX += 2;
+          }
+          this.y -= AIRTIME.horizontal[this.inAirCounter];
+        }else {
+          if(this.direction === 'up'){
+            this.y -= 5.5;
+            this.shadowY -= 5.5;
+          }else {
+            this.y += 5.5;
+            this.shadowY += 5.5;
+          }
+          this.x -= AIRTIME.vertical[this.inAirCounter];
+        }
+      }else {
+        if(this.direction === 'left' || this.direction === 'right'){
+          if(this.direction === 'left'){
+            this.sprite = this.left;
+            this.x -= 2;
+            this.shadowX -= 2;
+          }else {
+            this.sprite = this.right;
+            this.x += 2;
+            this.shadowX += 2;
+          }
+          this.y += AIRTIME.horizontal[this.inAirCounter];
+        }else {
+          if(this.direction === 'up'){
+            this.y -= 5.5;
+            this.shadowY -= 5.5;
+          }else {
+            this.y += 5.5;
+            this.shadowY += 5.5;
+          }
+          this.x += AIRTIME.vertical[this.inAirCounter];
+        }
+      }
+
+      this.inAirCounter += 1;
+    }
+
+    if(this.inAirCounter === 15){
+      this.status = '';
+      this.inAirCounter = 1;
+    }
+
   }
 
   isCollideWith(cars) {
     let bool = false;
     cars.forEach( car => {
-      let carRangeX = [car.x, car.x + 80];
+      let carRangeX = [car.x, car.x + 100];
       let carRangeY = [car.y, car.y + 50];
       let chickenX = this.x + 25;
       let chickenY = this.y + 25;
@@ -320,24 +395,19 @@ class Chicken {
     return bool;
   }
 
-  jump(ctx) {
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.drawImage(this.sprite, this.x -5, this.y - 5);
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.drawImage(this.sprite, this.x -10, this.y - 10);
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.drawImage(this.sprite, this.x -15, this.y - 15);
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.drawImage(this.sprite, this.x -20, this.y - 10);
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.drawImage(this.sprite, this.x -25, this.y - 5);
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.drawImage(this.sprite, this.x -25, this.y);
-
+  jump(direction) {
+      this.direction = direction;
+      this.status = 'inAir';
   }
 
 }
-//
+
+AIRTIME = {
+  horizontal: [0,2,2,2,2,2,2,2,2,2,2,2,2,2,2],
+  vertical: [0,2,3,0,0,0,0,0,0,0,0,0,0,3,2]
+};
+
+
 
 module.exports = Chicken;
 
@@ -373,11 +443,24 @@ const Util = {
     sprite2.onload = () => ctx.drawImage(sprite2,0,0,500,500);
   },
 
-  endGame(ctx) {
+  endGame(ctx, level) {
     let sprite3 = new Image();
     sprite3.src = 'assets/endgame2.png';
-    sprite3.onload = () => ctx.drawImage(sprite3,0,0,500,500);
+    sprite3.onload = () => {
+      ctx.drawImage(sprite3,0,0,500,500);
+      ctx.font="25px Georgia";
+      ctx.fillText(level-1, 253,82);
+    };
   },
+
+  chickenShadow(ctx, x, y) {
+    ctx.beginPath();
+    ctx.ellipse(x, y, 7, 2, Math.PI, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.closePath();
+    ctx.fillStyle = 'black';
+    ctx.fill();
+  }
 
 };
 

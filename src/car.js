@@ -9,6 +9,7 @@ class Car {
   }
 
   draw(ctx,level) {
+    this.move();
     ctx.drawImage(this.sprite, this.x, this.y, 80, 50);
     if(this.x > 500){
       this.x = -80;

@@ -50,6 +50,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 60px;
+  text-decoration: none;
 }
 
 .links a {

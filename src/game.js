@@ -24,28 +24,8 @@ class Game {
   }
 
   handleKeyPress(e){
-    let pos=[0,0];
-    switch ( e.keyCode ){
-      //LEFT
-      case 37:
-        pos = [-25, 0];
-        break;
 
-      //UP
-      case 38:
-        pos = [0, -76];
-        break;
-
-      //RIGHT
-      case 39:
-        pos = [25, 0];
-        break;
-
-      //DOWN
-      case 40:
-        pos = [0, 76];
-        break;
-
+    switch(e.keyCode){
       case 78:
         if(this.chicken === undefined || this.gameOver()){
           this.newGame();
@@ -54,13 +34,34 @@ class Game {
           this.newGame();
         }
         break;
-
-
-      default:
-        pos = [0, 0];
     }
 
-    this.chicken.move(pos);
+    if(this.chicken.status === ''){
+      switch ( e.keyCode ){
+        //LEFT
+        case 37:
+          this.chicken.jump('left');
+          break;
+
+        //UP
+        case 38:
+          this.chicken.jump('up');
+          break;
+
+        //RIGHT
+        case 39:
+          this.chicken.jump('right');
+          break;
+
+        //DOWN
+        case 40:
+          this.chicken.jump('down');
+          break;
+
+        default:
+          this.chicken.status = '';
+      }
+    }
   }
 
   addCar() {
@@ -76,12 +77,14 @@ class Game {
   }
 
   checkPass(ctx){
-    if( this.chicken.y < 30) {
+    if( this.chicken.y < 10) {
+      this.relocateChicken();
+      this.chicken.status = 'passed';
       this.level += 1;
       this.cars=[];
       this.addCar();
       this.chicken.draw(ctx);
-      this.relocateChicken();
+
     }
   }
 
@@ -94,14 +97,7 @@ class Game {
     this.cars.forEach( car => {
       car.draw(ctx);
     });
-    this.move();
     this.chicken.draw(ctx);
-  }
-
-  move(){
-    this.cars.forEach( car => {
-      car.move();
-    });
   }
 
   relocateChicken(){
