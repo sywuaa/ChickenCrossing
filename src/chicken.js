@@ -47,7 +47,6 @@ class Chicken {
   }
 
   move(){
-
     if(this.status === 'inAir'){
       if(this.inAirCounter < 8){
         if(this.direction === 'left' || this.direction === 'right'){
@@ -94,7 +93,6 @@ class Chicken {
           this.x += AIRTIME.vertical[this.inAirCounter];
         }
       }
-
       this.inAirCounter += 1;
     }
 
@@ -120,8 +118,16 @@ class Chicken {
   }
 
   jump(direction) {
+    if(direction === 'left' && this.x - 30 < 0){
+      this.status = '';
+    }else if (direction === 'right' && this.x + 50 > 500) {
+      this.status = '';
+    }else if (direction === 'down' && this.y + 50 > 500){
+      this.status = '';
+    }else{
       this.direction = direction;
       this.status = 'inAir';
+    }
   }
 
 }

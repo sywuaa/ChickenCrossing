@@ -21,6 +21,7 @@ class Game {
     this.addCar();
     this.chicken = new Chicken();
     this.lives = 5;
+    this.chicken.status = 'passed';
   }
 
   handleKeyPress(e){
@@ -89,11 +90,11 @@ class Game {
   }
 
   draw(ctx) {
+    this.checkPass(ctx);
     ctx.clearRect(0, 0, 500, 500);
     Util.background(ctx);
     this.drawLevel(ctx);
     this.drawLives(ctx);
-    this.checkPass(ctx);
     this.cars.forEach( car => {
       car.draw(ctx);
     });
@@ -109,10 +110,10 @@ class Game {
   }
 
   start() {
-    this.draw(this.ctx);
     if(this.chicken.isCollideWith(this.cars)){
       this.lives -= 1;
       this.relocateChicken();
+      this.chicken.status = 'passed';
     }
     if(this.gameOver()){
       this.stopAnimation(this.animationID);
@@ -120,6 +121,7 @@ class Game {
     }else {
       this.animationID = requestAnimationFrame(this.start.bind(this));
     }
+    this.draw(this.ctx);
   }
 
   endGame(ctx) {
