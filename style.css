@@ -1,5 +1,5 @@
 body {
-  background: url(assets/page-background.jpg) no-repeat center center fixed;\
+  background: url(assets/page-background-1.jpg) no-repeat center center fixed;\
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -9,7 +9,7 @@ body {
 .page-container {
   display: flex;
   justify-content: center;
-  height: 90vh;
+  height: 85vh;
 }
 
 .page {
@@ -81,11 +81,12 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: White;
 }
 
 .foot-icon-container i {
   font-size: 4em;
-  margin: 15px;
+  margin: 10px;
 }
 
 .foot-icon-container i:hover {

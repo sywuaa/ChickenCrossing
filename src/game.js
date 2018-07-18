@@ -149,17 +149,38 @@ class Game {
 }
 
 CARS = [
-  [{ x: 50, speed: 0.5, img: 'assets/right.png'}, {x: 130, speed: 0.5, img: 'assets/right.png'}, {x: 210, speed: 0.5, img: 'assets/right.png'}, {x: 350, speed: 0.5, img: 'assets/right.png'}],
 
-  [{ x: 130, speed: -1, img: 'assets/left.png'},{x: 210, speed: -1, img: 'assets/left.png'}, {x: 290, speed: -1, img: 'assets/left.png'}, {x: 500, speed: -1, img: 'assets/left.png'}],
+  [{ x: 130, speed: -1, img: 'assets/yellow-left.png'}, {x: 210, speed: -1, img: 'assets/yellow-left.png'}, {x: 290, speed: -1, img: 'assets/white-left.png'}],
 
-  [{ x: -80, speed: 0.5, img: 'assets/right.png'},{x: 0, speed: 0.5, img: 'assets/right.png'}, {x: 250, speed: 0.5, img: 'assets/right.png'}, {x: 340, speed: 0.5, img: 'assets/right.png'}],
+  [{ x: 0, speed: -0.5, img: 'assets/yellow-left.png'}, {x: 80, speed: -0.5, img: 'assets/white-left.png'}, {x: 300, speed: -0.5, img: 'assets/white-left.png'}],
 
-  [{ x: 70, speed: 1, img: 'assets/right.png'},{x: 250, speed:1, img: 'assets/right.png'}, {x: 420, speed: 1, img: 'assets/right.png'}],
+  [{ x: -80, speed: 0.5, img: 'assets/orange-right.png'}, {x: 250, speed: 0.5, img: 'assets/blue-right.png'}, {x: 340, speed: 0.5, img: 'assets/blue-right.png'}],
 
-  [{ x: 0, speed: -0.5, img: 'assets/left.png'},{x: 80, speed: -0.5, img: 'assets/left.png'}, {x: 300, speed: -0.5, img: 'assets/left.png'}],
+  [{ x: 70, speed: 1, img: 'assets/blue-right.png'}, {x: 250, speed:1, img: 'assets/orange-right.png'}, {x: 420, speed: 1, img: 'assets/orange-right.png'}],
 
-  [{ x: 130, speed: -0.5, img: 'assets/left.png'},{x: 210, speed: -0.5, img: 'assets/left.png'}, {x: 400, speed: -0.5, img: 'assets/left.png'}],
+  [{ x: 50, speed: 0.5, img: 'assets/blue-right.png'}, {x: 130, speed: 0.5, img: 'assets/orange-right.png'}, {x: 350, speed: 0.5, img: 'assets/blue-right.png'}],
+
+
+
+  [{ x: 10, speed: -0.7, img: 'assets/white-left.png'}],
+
+  [{ x: 200, speed: -1.2, img: 'assets/white-left.png'}],
+
+  [{ x: 130, speed: -1.5, img: 'assets/yellow-left.png'}],
+
+  [{ x: 25, speed: 0.3, img: 'assets/orange-right.png'}],
+
+  [{ x: 100, speed: 1.4, img: 'assets/blue-right.png'}],
+
+  [{ x: 220, speed: 1, img: 'assets/orange-right.png'}],
+
+  [{ x: 70, speed: 0.4, img: 'assets/orange-right.png'}, {x: 250, speed: 0.4, img: 'assets/orange-right.png'}],
+
+  [{ x: 70, speed: 1, img: 'assets/blue-right.png'}, {x: 420, speed: 1, img: 'assets/orange-right.png'}],
+
+  [{ x: 70, speed: -0.4, img: 'assets/white-left.png'}, {x: 250, speed: -0.4, img: 'assets/white-left.png'}],
+
+  [{ x: -20, speed: -0.8, img: 'assets/yellow-left.png'}, {x: 150, speed: -0.8, img: 'assets/white-left.png'}],
 
 ];
 

@@ -11,9 +11,9 @@ class Chicken {
     this.dead = 'false';
 
     this.left = new Image();
-    this.left.src = 'assets/chickenLeft.png';
+    this.left.src = 'assets/newChickenLeft.png';
     this.right = new Image();
-    this.right.src = 'assets/chickenRight.png';
+    this.right.src = 'assets/newChickenRight.png';
     this.sprite = this.left;
 
     this.status = '';

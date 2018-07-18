@@ -19,7 +19,7 @@ class Car {
   }
 
   move(){
-    this.x += (this.speed * this.level/2);
+    this.x += (this.speed * this.level/3);
   }
 }
 
